@@ -1,5 +1,5 @@
 <template>
-    <div class="accordion-item container">
+    <div class="accordion-item">
     <h2 class="accordion-header row" v-bind:id="'h' + article.uuid">
         <button v-on:click="listArticle"
               class="accordion-button collapsed col" 
@@ -25,7 +25,7 @@
         <div v-if="translateWord"
              class="alert alert-success" 
              role="alert">
-            {{ translateWord }}
+            {{ originWord + " - " + translateWord }}
         </div>
         <span v-for="word in localArticleText"
               v-bind:key="word"
@@ -49,7 +49,8 @@ export default {
         return {
             isOpenDetails: false,
             localArticleText: [],
-            translateWord: null
+            translateWord: null,
+            originWord: null
         }
     },
     methods: {
@@ -69,6 +70,7 @@ export default {
                 .get('http://127.0.0.1:8000/article/translate/' + word)
                 .then(response => {
                     this.translateWord = response.data;
+                    this.originWord = word;
                 })
         }
     },

@@ -1,5 +1,5 @@
 <template>
-    <ul class="list-group container">
+    <ul class="list-group">
         <SourceItem 
             v-for="source in sources"
             v-bind:key="source.uuid"

@@ -39,9 +39,15 @@ export default {
     },
     methods: {
         getArticles(categoryUuid) {
-            axios
-                .get('http://127.0.0.1:8000/category/articles/' + categoryUuid)
-                .then(response => {this.articles = response.data})
+            if (categoryUuid) {
+                axios
+                    .get('http://127.0.0.1:8000/category/articles/' + categoryUuid)
+                    .then(response => {this.articles = response.data})
+            } else {
+                axios
+                    .get('http://127.0.0.1:8000/articles')
+                    .then(response => {this.articles = response.data})
+            }
         },
         removeArticle(articleUuid) {
             axios

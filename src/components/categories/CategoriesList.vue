@@ -1,5 +1,5 @@
 <template>
-    <ul class="list-group container">
+    <ul class="list-group">
     <CategoryItem
         v-for="category in categories"
         v-bind:key="category.uuid"

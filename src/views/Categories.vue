@@ -30,9 +30,16 @@ export default {
     },
     methods: {
         getCategories(sourceUuid) {
-            axios
-                .get('http://127.0.0.1:8000/source/categories/' + sourceUuid)
-                .then(response => {this.categories = response.data})
+            if (sourceUuid) {
+                axios
+                    .get('http://127.0.0.1:8000/source/categories/' + sourceUuid)
+                    .then(response => {this.categories = response.data})
+            } else {
+                axios
+                    .get('http://127.0.0.1:8000/categories')
+                    .then(response => {this.categories = response.data})
+            }
+            
         },
         removeCategory(categoryUuid) {
             axios
